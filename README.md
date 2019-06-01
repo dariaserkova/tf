@@ -16,6 +16,23 @@ http://telegra.ph/telefeedbot-05-12
 
 Для хранения опубликованных ссылок используется redis.
 
+При необходимости прописываем переменные:
+```
+export GOPATH=~/.go
+export GOBIN=$GOPATH/bin
+```
+
+Ставим зависимости:
+```
+go get github.com/boltdb/bolt
+go get github.com/recoilme/tf/boltapi
+go get github.com/go-telegram-bot-api/telegram-bot-api
+go get github.com/mmcdole/gofeed
+go get github.com/disintegration/imaging
+go get github.com/go-redis/redis
+go get github.com/orcaman/concurrent-map
+```
+
 Собираем сервера:
 
 ```
@@ -29,6 +46,7 @@ cd postsrv
 go install
 ```
 
+Переходим в $GOBIN.
 Стартуем: ./boltsrv &
 
 Поднимется http интерфейс на 5000 порту к базе данных (в качестве движка испоьзуется boltdb)
