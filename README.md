@@ -14,7 +14,10 @@ http://telegra.ph/telefeedbot-05-12
  - Сервер телеграм tgsrv
  - Сервер публикации postsrv
 
-Для хранения опубликованных ссылок используется redis.
+Для хранения опубликованных ссылок используется redis. Можно запустить в докере с сохранением данных в на диск хостмашины:
+```
+docker run --name tfredis --restart unless-stopped -p 127.0.0.1:6379:6379 -v $(pwd)/redisdata:/data -d redis redis-server --appendonly yes
+```
 
 При необходимости прописываем переменные:
 ```
