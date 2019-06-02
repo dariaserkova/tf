@@ -25,15 +25,9 @@ export GOPATH=~/.go
 export GOBIN=$GOPATH/bin
 ```
 
-Ставим зависимости:
+Переходим в директорию проекта, ставим зависимости:
 ```
-go get github.com/boltdb/bolt
-go get github.com/recoilme/tf/boltapi
-go get github.com/go-telegram-bot-api/telegram-bot-api
-go get github.com/mmcdole/gofeed
-go get github.com/disintegration/imaging
-go get github.com/go-redis/redis
-go get github.com/orcaman/concurrent-map
+go get -v -d -t ./...
 ```
 
 Собираем сервера:
