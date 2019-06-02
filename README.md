@@ -14,9 +14,10 @@ http://telegra.ph/telefeedbot-05-12
  - Сервер телеграм tgsrv
  - Сервер публикации postsrv
 
-Для хранения опубликованных ссылок используется redis. Можно запустить в докере с сохранением данных в на диск хостмашины:
+Для хранения опубликованных ссылок используется redis. Можно запустить в докере с сохранением данных на диск хостмашины. Важно: запускть нужно от своего пользователя, а не от root. + нужно убедиться, что id пользователя больше 1000, т.к. "Setting the UID to 1000 ensures we will not run in permissions issues when mapping volumes from our computer to the running container, once 1000 is the first UID assigned to a non root user in Linux, at least in Debian and Ubuntu" 
+https://github.com/mhart/alpine-node/issues/48#issuecomment-370171836
 ```
-docker run --name tfredis --restart unless-stopped -p 127.0.0.1:6379:6379 -v $(pwd)/redisdata:/data -d redis redis-server --appendonly yes
+docker run --name tfredis --restart unless-stopped --user $(id -u) -p 127.0.0.1:6379:6379 -v $(pwd)/redisdata:/data -d redis redis-server --appendonly yes
 ```
 
 При необходимости прописываем переменные:
@@ -48,6 +49,13 @@ go install
 
 Поднимется http интерфейс на 5000 порту к базе данных (в качестве движка испоьзуется boltdb)
 Возможно потребуется поднять лимит одновременно открытых соединений - ulimit
+
+Можно запустить в докере. Dokerfile - boltsrv/Dockerfile.
+
+```
+docker run -d --name boltsrv --restart unless-stopped --user $(id -u) -p 127.0.0.1:5000:5000 -v $(pwd)/bolt.db:/app/bolt.db ds0102/boltsrv:unstable
+```
+bolt.db - файл данных базы, лучше, чтобы был на диске, потому что иначе - если закрашится контейнер - потеряете всю инфу о подписках.
 
 
 Заводим в телеграм бота.
