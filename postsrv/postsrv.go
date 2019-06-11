@@ -29,9 +29,7 @@ import (
 
 	"github.com/disintegration/imaging"
 	"github.com/go-redis/redis"
-	"github.com/go-telegram-bot-api/telegram-bot-api"
 	"github.com/mmcdole/gofeed"
-	"github.com/orcaman/concurrent-map"
 	"github.com/recoilme/tf/httputils"
 	"github.com/recoilme/tf/params"
 	"github.com/recoilme/tf/vkapi"
@@ -94,7 +92,7 @@ func initBot() {
 		log.Fatal(err)
 	}
 	red = redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
+		Addr:     os.Getenv("REDIS_HOST") + ":6379",
 		Password: "", // no password set
 		DB:       0,  // use default DB
 	})

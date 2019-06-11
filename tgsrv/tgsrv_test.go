@@ -89,7 +89,7 @@ func TestMainDomain(t *testing.T) {
 	}
 	result, _ = publicsuffix.EffectiveTLDPlusOne("m.vk.com")
 	if result != "vk.com" {
-		t.Error("Expected reddit.com, got ", result)
+		t.Error("Expected vk.com, got ", result)
 	}
 	result, _ = publicsuffix.EffectiveTLDPlusOne("adsfffsf")
 	log.Println("result:", result)
