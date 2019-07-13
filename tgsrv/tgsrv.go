@@ -10,14 +10,15 @@ import (
 	"net/url"
 	"strconv"
 	"strings"
+	"github.com/dariaserkova/tf/params"
 
 	"golang.org/x/net/html"
 	"golang.org/x/net/publicsuffix"
 
 	"github.com/mmcdole/gofeed"
-	"github.com/recoilme/tf/httputils"
-	"github.com/recoilme/tf/params"
-	"github.com/recoilme/tf/vkapi"
+	"github.com/dariaserkova/tf/httputils"
+	
+	"github.com/dariaserkova/tf/vkapi"
 
 	"sort"
 

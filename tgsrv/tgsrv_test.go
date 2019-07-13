@@ -13,7 +13,7 @@ import (
 	"time"
 
 	"github.com/recoilme/tf/httputils"
-	"github.com/recoilme/tf/params"
+	"github.com/dariaserkova/tf/params"
 	"github.com/recoilme/tf/vkapi"
 
 	"golang.org/x/net/html"
